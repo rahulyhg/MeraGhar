@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1080963129466",
+    "firebase_url": "https://meraghar-e4b06.firebaseio.com",
+    "project_id": "meraghar-e4b06",
+    "storage_bucket": "meraghar-e4b06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080963129466:android:c4c3ceaa3f9ef232",
+        "android_client_info": {
+          "package_name": "com.dudefinanceindia.meraghar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080963129466-14vqhri0qog7s1fuqrhprp31o9pi501c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dudefinanceindia.meraghar",
+            "certificate_hash": "a137f9181f9925423b3b865bfac3df4d7d487955"
+          }
+        },
+        {
+          "client_id": "1080963129466-s0ttfg0hi5ipv11ec7mgorr6sscgdsti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvbvtMQR0E1JE6aYczNOtIEFkCyKeqeqI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080963129466-s0ttfg0hi5ipv11ec7mgorr6sscgdsti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

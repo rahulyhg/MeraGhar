@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Mera Ghar</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="dealer">Dealer</string>
+    <string name="continue_with">Continue with</string>
+    <string name="nineOne">+91</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="wrong_number">wrong number?</string>
+    <string name="no_need_to_sign_up">No need to <b>Sign-up</b>. If you are new user then new account will be automatically created and you will be directly <b>Signed-in</b></string>
+    <string name="name">name</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone number</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save">SAVE</string>
+    <string name="gender">Gender</string>
+    <string name="update"><b>UPDATE</b></string>
+    <string name="skip">SKIP</string>
+    <string name="change_phone_number">Change Phone Number</string>
+    <string name="profile_verification">Profile Verification</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="status">status</string>
+    <string name="driving_license">Driving License</string>
+    <string name="aadhaar_card">Aadhaar Card</string>
+    <string name="upload">UPLOAD</string>
+    <string name="dealer_login">Dealer Login</string>
+    <string name="profile">Profile</string>
+    <string name="registered_mobile_number">Registered Mobile Number</string>
+    <string name="full_name">Full Name</string>
+    <string name="alternate_number">Alternate Number</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="submit">SUBMIT</string>
+
+</resources>

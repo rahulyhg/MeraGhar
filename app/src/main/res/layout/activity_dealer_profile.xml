@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".DealerProfile">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/dp_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/appColor"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--back button-->
+            <ImageButton
+                android:id="@+id/ep_back_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_return_back_white_smoke"
+                tools:ignore="ContentDescription" />
+
+            <!--edit profile-->
+            <TextView
+                android:layout_toEndOf="@+id/ep_back_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_profile"
+                style="@style/CustomTextStyle16"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                tools:ignore="RelativeOverlap,RtlSymmetry" />
+
+            <!--logout button-->
+            <ImageButton
+                android:id="@+id/ep_logout_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_logout"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--profile verification-->
+    <RelativeLayout
+        android:id="@+id/ep_profile_verification_rl"
+        android:layout_below="@+id/dp_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="#EDF0F2"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:elevation="@dimen/elevation"
+        tools:targetApi="lollipop">
+
+        <!--verify licence-->
+        <ImageView
+            android:id="@+id/ep_verify_licence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_verify_licence"
+            tools:ignore="ContentDescription" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_verification"
+            style="@style/CustomTextStyle16"
+            android:layout_toEndOf="@+id/ep_verify_licence"
+            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_right_arrow_next"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            />
+
+
+    </RelativeLayout>
+
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_below="@+id/ep_profile_verification_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        >
+
+    <!--registered mobile-->
+    <TextView
+        android:id="@+id/dp_registered_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registered_mobile_number"
+        style="@style/CustomTextStyle12"
+        android:textColor="@color/gray"
+        />
+
+        <EditText
+            android:id="@+id/dp_registered_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dp_registered_number_tv"
+            style="@style/CustomTextStyle16"
+            android:background="@drawable/edit_text_background_app_color_border"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_phone"
+            android:enabled="false"
+            android:padding="@dimen/textViewPadding"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="@dimen/textViewPadding"
+            tools:ignore="LabelFor" />
+
+
+        <!--name-->
+        <TextView
+            android:id="@+id/dp_name_tv"
+            android:layout_below="@+id/dp_registered_number_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/textViewPadding"
+            android:text="@string/full_name"
+            style="@style/CustomTextStyle12"
+            android:textColor="@color/gray"
+            />
+
+        <EditText
+            android:id="@+id/dp_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dp_name_tv"
+            style="@style/CustomTextStyle16"
+            android:background="@drawable/edit_text_background_app_color_border"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_placeholder_profile_pic"
+            android:padding="@dimen/textViewPadding"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="@dimen/textViewPadding"
+            tools:ignore="LabelFor" />
+
+
+        <!--alternate number-->
+        <TextView
+            android:id="@+id/dp_alternate_number_tv"
+            android:layout_below="@+id/dp_name_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/textViewPadding"
+            android:text="@string/alternate_number"
+            style="@style/CustomTextStyle12"
+            android:textColor="@color/gray"
+            />
+
+        <EditText
+            android:id="@+id/dp_alternate_number_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dp_alternate_number_tv"
+            style="@style/CustomTextStyle16"
+            android:background="@drawable/edit_text_background_app_color_border"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_phone"
+            android:padding="@dimen/textViewPadding"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="@dimen/textViewPadding"
+            tools:ignore="LabelFor" />
+
+
+        <!--state-->
+        <TextView
+            android:id="@+id/dp_state_tv"
+            android:layout_below="@+id/dp_alternate_number_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/textViewPadding"
+            android:text="@string/state"
+            style="@style/CustomTextStyle12"
+            android:textColor="@color/gray"
+            />
+
+        <EditText
+            android:id="@+id/dp_state_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dp_state_tv"
+            style="@style/CustomTextStyle16"
+            android:background="@drawable/edit_text_background_app_color_border"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_state_city"
+            android:padding="@dimen/textViewPadding"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="@dimen/textViewPadding"
+            tools:ignore="LabelFor" />
+
+
+        <!--city-->
+        <TextView
+            android:id="@+id/dp_city_tv"
+            android:layout_below="@+id/dp_state_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/textViewPadding"
+            android:text="@string/city"
+            style="@style/CustomTextStyle12"
+            android:textColor="@color/gray"
+            />
+
+        <EditText
+            android:id="@+id/dp_city_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dp_city_tv"
+            style="@style/CustomTextStyle16"
+            android:background="@drawable/edit_text_background_app_color_border"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_state_city"
+            android:padding="@dimen/textViewPadding"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="@dimen/textViewPadding"
+            tools:ignore="LabelFor" />
+
+        <!--pin code-->
+        <TextView
+            android:id="@+id/dp_pin_code_tv"
+            android:layout_below="@+id/dp_city_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/textViewPadding"
+            android:text="@string/pin_code"
+            style="@style/CustomTextStyle12"
+            android:textColor="@color/gray"
+            />
+
+        <EditText
+            android:id="@+id/dp_pin_code_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dp_pin_code_tv"
+            style="@style/CustomTextStyle16"
+            android:background="@drawable/edit_text_background_app_color_border"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_location"
+            android:padding="@dimen/textViewPadding"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="@dimen/textViewPadding"
+            tools:ignore="LabelFor" />
+
+
+
+    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/appColor"
+        android:text="@string/submit"
+        style="@style/CustomTextStyle16"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+</RelativeLayout>
