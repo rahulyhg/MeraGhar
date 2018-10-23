@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
             <!--back button-->
             <ImageButton
-                android:id="@+id/ep_back_ib"
+                android:id="@+id/dp_back_ib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_return_back_white_smoke"
@@ -28,7 +28,7 @@
 
             <!--edit profile-->
             <TextView
-                android:layout_toEndOf="@+id/ep_back_ib"
+                android:layout_toEndOf="@+id/dp_back_ib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_profile"
@@ -55,7 +55,7 @@
 
     <!--profile verification-->
     <RelativeLayout
-        android:id="@+id/ep_profile_verification_rl"
+        android:id="@+id/dp_profile_verification_rl"
         android:layout_below="@+id/dp_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:layout_toEndOf="@+id/ep_verify_licence"
             android:layout_marginStart="12dp"
             android:layout_centerVertical="true"
-            />
+            tools:ignore="RelativeOverlap" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             android:background="@drawable/ic_right_arrow_next"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            />
+            tools:ignore="ContentDescription" />
 
 
     </RelativeLayout>
@@ -96,7 +96,7 @@
 
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_below="@+id/ep_profile_verification_rl"
+        android:layout_below="@+id/dp_profile_verification_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -115,7 +115,8 @@
         android:layout_height="wrap_content"
         android:text="@string/registered_mobile_number"
         style="@style/CustomTextStyle12"
-        android:textColor="@color/gray"
+        android:textColor="@color/black50"
+        android:textAllCaps="true"
         />
 
         <EditText
@@ -124,11 +125,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dp_registered_number_tv"
             style="@style/CustomTextStyle16"
-            android:background="@drawable/edit_text_background_app_color_border"
+            android:background="@drawable/under_line_textview_light"
+            android:paddingBottom="@dimen/textViewPaddingBottom"
             android:inputType="phone"
             android:drawableStart="@drawable/ic_phone"
             android:enabled="false"
-            android:padding="@dimen/textViewPadding"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
             tools:ignore="LabelFor" />
@@ -140,10 +141,11 @@
             android:layout_below="@+id/dp_registered_number_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textViewPadding"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/full_name"
             style="@style/CustomTextStyle12"
-            android:textColor="@color/gray"
+            android:textColor="@color/black50"
+            android:textAllCaps="true"
             />
 
         <EditText
@@ -152,10 +154,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dp_name_tv"
             style="@style/CustomTextStyle16"
-            android:background="@drawable/edit_text_background_app_color_border"
-            android:inputType="phone"
+            android:background="@drawable/under_line_textview_light"
+            android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:inputType="textPersonName"
             android:drawableStart="@drawable/ic_placeholder_profile_pic"
-            android:padding="@dimen/textViewPadding"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
             tools:ignore="LabelFor" />
@@ -167,10 +169,11 @@
             android:layout_below="@+id/dp_name_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textViewPadding"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/alternate_number"
             style="@style/CustomTextStyle12"
-            android:textColor="@color/gray"
+            android:textColor="@color/black50"
+            android:textAllCaps="true"
             />
 
         <EditText
@@ -179,12 +182,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dp_alternate_number_tv"
             style="@style/CustomTextStyle16"
-            android:background="@drawable/edit_text_background_app_color_border"
+            android:background="@drawable/under_line_textview_light"
+            android:paddingBottom="@dimen/textViewPaddingBottom"
             android:inputType="phone"
             android:drawableStart="@drawable/ic_phone"
-            android:padding="@dimen/textViewPadding"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
+            android:maxLength="10"
             tools:ignore="LabelFor" />
 
 
@@ -194,10 +198,11 @@
             android:layout_below="@+id/dp_alternate_number_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textViewPadding"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/state"
             style="@style/CustomTextStyle12"
-            android:textColor="@color/gray"
+            android:textColor="@color/black50"
+            android:textAllCaps="true"
             />
 
         <EditText
@@ -206,10 +211,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dp_state_tv"
             style="@style/CustomTextStyle16"
-            android:background="@drawable/edit_text_background_app_color_border"
-            android:inputType="phone"
+            android:background="@drawable/under_line_textview_light"
+            android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:inputType="textPostalAddress"
             android:drawableStart="@drawable/ic_state_city"
-            android:padding="@dimen/textViewPadding"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
             tools:ignore="LabelFor" />
@@ -221,10 +226,11 @@
             android:layout_below="@+id/dp_state_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textViewPadding"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/city"
             style="@style/CustomTextStyle12"
-            android:textColor="@color/gray"
+            android:textColor="@color/black50"
+            android:textAllCaps="true"
             />
 
         <EditText
@@ -233,10 +239,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dp_city_tv"
             style="@style/CustomTextStyle16"
-            android:background="@drawable/edit_text_background_app_color_border"
-            android:inputType="phone"
+            android:background="@drawable/under_line_textview_light"
+            android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:inputType="textPostalAddress"
             android:drawableStart="@drawable/ic_state_city"
-            android:padding="@dimen/textViewPadding"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
             tools:ignore="LabelFor" />
@@ -247,10 +253,11 @@
             android:layout_below="@+id/dp_city_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/textViewPadding"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/pin_code"
             style="@style/CustomTextStyle12"
-            android:textColor="@color/gray"
+            android:textColor="@color/black50"
+            android:textAllCaps="true"
             />
 
         <EditText
@@ -259,20 +266,35 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dp_pin_code_tv"
             style="@style/CustomTextStyle16"
-            android:background="@drawable/edit_text_background_app_color_border"
-            android:inputType="phone"
+            android:background="@drawable/under_line_textview_light"
+            android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:inputType="number"
             android:drawableStart="@drawable/ic_location"
-            android:padding="@dimen/textViewPadding"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
-            tools:ignore="LabelFor" />
+            android:maxLength="6"
+            tools:ignore="LabelFor"
+            android:layout_marginBottom="72dp"
+            />
 
-
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:visibility="gone"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/dp_spin_kit"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                app:SpinKit_Color="@color/black" />
 
     </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <Button
+        android:id="@+id/dp_submit_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

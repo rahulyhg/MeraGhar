@@ -9,12 +9,14 @@
         <item
             android:id="@+id/nav_dealer_login"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/dealer" />
+            android:title="@string/dealer"
+            android:visible="false"
+            />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/profile"
-            android:visible="true"
+            android:visible="false"
             />
         <item
             android:id="@+id/nav_slideshow"

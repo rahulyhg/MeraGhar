@@ -73,17 +73,10 @@ public class DealerPhoneLogin extends AppCompatActivity implements View.OnClickL
             verificationCallbacks;
     private PhoneAuthProvider.ForceResendingToken resendToken;
 
-    private SharedPreferences sharedPreferencesLoginMode;
-    private final static String MODE = "mode";
-    private final static String LOGIN_MODE = "login_mode";
-
     private final static String DEALER_PROFILES = "dealer_profiles";
     private final static String PROFILE = "profile";
     private final static String PHONE_NUMBER = "phone_number";
 
-    private SharedPreferences sharedPreferencesLogin;
-    private final static String LOGIN = "login";
-    private final static String LOGGED_IN_OR_NOT = "logged_in";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +85,6 @@ public class DealerPhoneLogin extends AppCompatActivity implements View.OnClickL
         fetchIDs();
         TextWatcher();
         initialiseFirebaseAuth();
-        initialiseSharedPrefs();
-
     }
 
     //    initializing firebase auth
@@ -102,12 +93,6 @@ public class DealerPhoneLogin extends AppCompatActivity implements View.OnClickL
     }
     //    initializing firebase auth
 
-
-    //    initialising shared preferences
-    private void initialiseSharedPrefs(){
-        sharedPreferencesLoginMode = getSharedPreferences(MODE, MODE_PRIVATE);
-    }
-    //    initialising shared preferences
 
     //    text watcher
     private void TextWatcher() {
@@ -491,18 +476,16 @@ public class DealerPhoneLogin extends AppCompatActivity implements View.OnClickL
 
 
     //    saving data at firebase database
-    private void saveUserProfileDataInFirebaseDataBasePHONE(FirebaseUser user){
+    private void saveUserProfileDataInFirebaseDataBasePHONE(final FirebaseUser user){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child(DEALER_PROFILES).child(user.getUid()).child(PROFILE)
                 .child(PHONE_NUMBER).setValue(user.getPhoneNumber())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                      //  Toast.makeText(DealerPhoneLogin.this, "values updated", Toast.LENGTH_SHORT).show();
-                        sharedPreferencesLogin = getSharedPreferences(LOGIN, MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferencesLogin.edit();
-                        editor.putString(LOGGED_IN_OR_NOT, "true");
-                        editor.apply();
+                        String uid = user.getUid();
+                        MySharedPrefs mySharedPrefs = new MySharedPrefs(DealerPhoneLogin.this);
+                        mySharedPrefs.setLoginPrefs("true", uid);
                         spinKitView.setVisibility(View.GONE);
                         DealerPhoneLogin.this.finish();
                     }

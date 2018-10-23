@@ -16,6 +16,7 @@
     <dimen name="sp20">20sp</dimen>
 
     <dimen name="textViewPadding">7dp</dimen>
+    <dimen name="textViewPaddingBottom">5dp</dimen>
     <dimen name="elevation">2dp</dimen>
 
 </resources>
