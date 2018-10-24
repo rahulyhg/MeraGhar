@@ -12,7 +12,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class MySharedPrefs {
 
     private SharedPreferences sharedPreferences;
-    private static final String LOGIN = "login";
+    private static final String LOGIN = "login"; // pref
     private static final String LOGGED_IN_OR_NOT = "logged_in";
     private static final String UID = "uid";
 
@@ -41,5 +41,12 @@ public class MySharedPrefs {
         return sharedPreferences.getString(UID, "");
     }
 
+
+
+//    clear all prefs
+    public void clearAllPrefs(){
+        sharedPreferences = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
+    }
 
 }

@@ -28,11 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="height" value="18" />
-                            <entry key="outputName" value="ic_state_city" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_house" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\Dell" />
-                            <entry key="width" value="18" />
+                            <entry key="sourceFile" value="C:\Users\Dell\Downloads\house (1).svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -38,15 +38,18 @@
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 tools:ignore="RelativeOverlap,RtlSymmetry" />
 
-            <!--logout button-->
-            <ImageButton
-                android:id="@+id/ep_logout_ib"
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/dp_spin_kit"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_logout"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                tools:ignore="ContentDescription" />
+                app:SpinKit_Color="@color/white" />
 
         </RelativeLayout>
 
@@ -156,6 +159,7 @@
             style="@style/CustomTextStyle16"
             android:background="@drawable/under_line_textview_light"
             android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:hint="@string/enter_ful_name"
             android:inputType="textPersonName"
             android:drawableStart="@drawable/ic_placeholder_profile_pic"
             android:layout_marginTop="2dp"
@@ -185,6 +189,7 @@
             android:background="@drawable/under_line_textview_light"
             android:paddingBottom="@dimen/textViewPaddingBottom"
             android:inputType="phone"
+            android:hint="@string/enter_alternate_number"
             android:drawableStart="@drawable/ic_phone"
             android:layout_marginTop="2dp"
             android:drawablePadding="@dimen/textViewPadding"
@@ -213,6 +218,7 @@
             style="@style/CustomTextStyle16"
             android:background="@drawable/under_line_textview_light"
             android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:hint="@string/your_residence_state"
             android:inputType="textPostalAddress"
             android:drawableStart="@drawable/ic_state_city"
             android:layout_marginTop="2dp"
@@ -241,6 +247,7 @@
             style="@style/CustomTextStyle16"
             android:background="@drawable/under_line_textview_light"
             android:paddingBottom="@dimen/textViewPaddingBottom"
+            android:hint="@string/your_residence_city"
             android:inputType="textPostalAddress"
             android:drawableStart="@drawable/ic_state_city"
             android:layout_marginTop="2dp"
@@ -274,21 +281,9 @@
             android:drawablePadding="@dimen/textViewPadding"
             android:maxLength="6"
             tools:ignore="LabelFor"
+            android:hint="@string/your_residence_6_digit_pin_code"
             android:layout_marginBottom="72dp"
             />
-
-            <!--loading view-->
-            <com.github.ybq.android.spinkit.SpinKitView
-                android:visibility="gone"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/dp_spin_kit"
-                style="@style/SpinKitView.Small.Circle"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                app:SpinKit_Color="@color/black" />
 
     </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

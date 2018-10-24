@@ -50,5 +50,10 @@
                                      - Blurry image wil not be accepted.\n
                                      - Aadhar Number already registered with CarByke will not be accepted.</string>
     <string name="upload_visiting_card_image">Upload Visiting Card Image</string>
+    <string name="enter_ful_name">Enter ful name</string>
+    <string name="enter_alternate_number">Enter alternate number</string>
+    <string name="your_residence_state">Your residence state</string>
+    <string name="your_residence_city">Your residence city</string>
+    <string name="your_residence_6_digit_pin_code">Nearest post-office pin code</string>
 
 </resources>
