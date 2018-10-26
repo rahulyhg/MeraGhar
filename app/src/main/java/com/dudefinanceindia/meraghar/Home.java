@@ -103,6 +103,9 @@ public class Home extends AppCompatActivity
                     case "Dealer Profile":
                         startActivity(new Intent(Home.this, DealerProfile.class));
                         break;
+                    case "Add Property":
+                        startActivity(new Intent(Home.this, AddPropertyForRent.class));
+                        break;
                     case "Logout":
                         Logout();
                         break;

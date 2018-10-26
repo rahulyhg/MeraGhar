@@ -55,5 +55,18 @@
     <string name="your_residence_state">Your residence state</string>
     <string name="your_residence_city">Your residence city</string>
     <string name="your_residence_6_digit_pin_code">Nearest post-office pin code</string>
+    <string name="add_image">Add Image</string>
+    <string name="pick_address_from_map">Pick Address from Map</string>
+    <string name="bedrooms">BedRooms</string>
+    <string name="bathrooms">bathrooms</string>
+    <string name="furnished">furnished</string>
+    <string name="builtup_area">Builtup Area</string>
+    <string name="carpet_area">Carpet Area</string>
+    <string name="sq_feet">Sq Feet</string>
+    <string name="total_floors">Total Floors</string>
+    <string name="floors_for_rent">Floor for Rent</string>
+    <string name="amount_payable_per_month">Amount Payable Per Month</string>
+    <string name="add_property">Add Property</string>
+    <string name="select_images">Select Images</string>
 
 </resources>

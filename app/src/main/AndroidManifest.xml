@@ -47,11 +47,13 @@
         <activity
             android:name=".DealerProfile"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".ProfileVerification"></activity>
+        <activity android:name=".ProfileVerification" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".AddPropertyForRent"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
     </application>
-
 
 </manifest>
