@@ -16,6 +16,11 @@ public class MySharedPrefs {
     private static final String LOGGED_IN_OR_NOT = "logged_in";
     private static final String UID = "uid";
 
+    private static final String LOCATION = "location"; // pref
+    private static final String ADDRESS = "address";
+    private static final String LATITUDE = "latitude";
+    private static final String LONGITUDE = "longitude";
+
 
 
     private Context context;
@@ -42,11 +47,49 @@ public class MySharedPrefs {
     }
 
 
+    public void setSelectedLocationFromMap(String address, String latitude, String longitude){
+        sharedPreferences = context.getSharedPreferences(LOCATION, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ADDRESS, address);
+        editor.putString(LATITUDE, latitude);
+        editor.putString(LONGITUDE, longitude);
+        editor.apply();
+    }
 
-//    clear all prefs
+    public String getLocationFromMap() {
+        sharedPreferences = context.getSharedPreferences(LOCATION, MODE_PRIVATE);
+        return sharedPreferences.getString(ADDRESS, "");
+    }
+    public String getLatitude() {
+        sharedPreferences = context.getSharedPreferences(LOCATION, MODE_PRIVATE);
+        return sharedPreferences.getString(LATITUDE, "");
+    }
+    public String getLongitude() {
+        sharedPreferences = context.getSharedPreferences(LOCATION, MODE_PRIVATE);
+        return sharedPreferences.getString(LONGITUDE, "");
+    }
+    public void clearMapLocation(){
+        sharedPreferences = context.getSharedPreferences(LOCATION, MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
+    }
+
+
+    //    clear all prefs
     public void clearAllPrefs(){
         sharedPreferences = context.getSharedPreferences(LOGIN, MODE_PRIVATE);
         sharedPreferences.edit().clear().apply();
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

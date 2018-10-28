@@ -56,7 +56,7 @@
     <string name="your_residence_city">Your residence city</string>
     <string name="your_residence_6_digit_pin_code">Nearest post-office pin code</string>
     <string name="add_image">Add Image</string>
-    <string name="pick_address_from_map">Pick Address from Map</string>
+    <string name="pick_address_from_map">Pick Address from Map. This will be used to show location of property for rent to users.</string>
     <string name="bedrooms">BedRooms</string>
     <string name="bathrooms">bathrooms</string>
     <string name="furnished">furnished</string>
@@ -68,5 +68,19 @@
     <string name="amount_payable_per_month">Amount Payable Per Month</string>
     <string name="add_property">Add Property</string>
     <string name="select_images">Select Images</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_location_here">Search location here</string>
+    <string name="select">Select</string>
+    <string name="click_on_map_to_select_location">Click on map to select location</string>
+    <string name="continue1">Continue</string>
+    <string name="select_location">Select Location</string>
+    <string name="address">Address</string>
+    <string name="this_address_will_be_visible_to_users">This Address will be visible to users</string>
+    <string name="write_key_points_in_formatted_fashion">Write key points in formatted fashion</string>
+    <string name="about_property">About Property</string>
+    <string name="type">Type</string>
+    <string name="hbk_pg_appartment_office_other">HBK / PG / APPARTMENT / OFFICE / OTHER</string>
 
 </resources>

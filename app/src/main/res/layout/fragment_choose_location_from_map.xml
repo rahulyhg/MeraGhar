@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="@color/gray"
+    tools:context=".ChooseLocationFromMap">
+
+
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/dl_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/dl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/appColor"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--back button-->
+            <ImageButton
+                android:id="@+id/dl_back_ib"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_return_back_white_smoke"
+                tools:ignore="ContentDescription" />
+
+            <!--edit profile-->
+            <TextView
+                android:layout_toEndOf="@+id/dl_back_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_location"
+                style="@style/CustomTextStyle16"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                tools:ignore="RelativeOverlap,RtlSymmetry" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/dl_charge_extra_tv"
+        android:layout_below="@+id/dl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#90323A44"
+        style="@style/CustomTextStyle12"
+        android:textColor="@color/white"
+        android:text="@string/click_on_map_to_select_location"
+        android:gravity="center"
+        android:padding="4dp"
+        />
+
+    <!--search edit text-->
+
+    <TextView
+        android:id="@+id/dl_search_et"
+        android:layout_below="@+id/dl_charge_extra_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/CustomTextStyle14"
+        android:hint="@string/search_location_here"
+        android:textColorHint="@color/gray"
+        android:background="@drawable/rectangle_rent_home"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="@dimen/textViewPadding"
+        android:singleLine="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="7dp"
+        />
+
+    <!--current location-->
+    <ImageButton
+        android:id="@+id/dl_current_location_ib"
+        android:layout_above="@+id/dl_continue_b"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_current_location"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        tools:ignore="ContentDescription" />
+
+    <!--satellite button-->
+    <ImageButton
+        android:id="@+id/dl_satellite_ib"
+        android:layout_above="@+id/dl_continue_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_satellite"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="12dp"
+        tools:ignore="ContentDescription" />
+
+    <!--terrain button-->
+    <ImageButton
+        android:id="@+id/dl_terrain_ib"
+        android:layout_above="@+id/dl_continue_b"
+        android:layout_toEndOf="@+id/dl_satellite_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_terrian"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="12dp"
+        tools:ignore="ContentDescription" />
+
+    <!--continue button-->
+    <Button
+        android:id="@+id/dl_continue_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/continue1"
+        style="@style/CustomTextStyle16"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:enabled="false"
+        android:textAllCaps="true"
+        android:background="@color/buttonDisabledColor"
+        />
+
+</RelativeLayout>

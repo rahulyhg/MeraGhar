@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container_add_property_rent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -70,15 +71,16 @@
         android:textColor="@color/gray"
         />
 
+
     <LinearLayout
         android:id="@+id/fr_ll1"
-        android:layout_below="@+id/fr_select_image"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="5"
         android:padding="4dp"
-        >
+        android:layout_below="@+id/fr_select_image"
+        android:baselineAligned="false">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -338,101 +340,393 @@
                 app:SpinKit_Color="@color/white" />
 
         </RelativeLayout>
-
-
     </LinearLayout>
 
 
-    <!--<LinearLayout-->
-        <!--android:id="@+id/fr_ll2"-->
-        <!--android:layout_below="@+id/fr_ll1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:weightSum="3"-->
-        <!--android:padding="4dp"-->
-        <!--&gt;-->
+    <!--next five images-->
+    <LinearLayout
+        android:id="@+id/fr_ll7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:padding="4dp"
+        android:layout_below="@+id/fr_ll1"
+        android:baselineAligned="false"
+        >
 
-        <!--&lt;!&ndash;images 3&ndash;&gt;-->
-        <!--<ImageView-->
-            <!--android:id="@+id/fr_image_3_iv"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="90dp"-->
-            <!--android:background="@drawable/simple_rectangle"-->
-            <!--android:text="@string/add_image"-->
-            <!--android:layout_weight="1"-->
-            <!--style="@style/CustomTextStyle10"-->
-            <!--android:textColor="@color/gray"-->
-            <!--android:layout_marginEnd="2dp"-->
-            <!--tools:ignore="ContentDescription" />-->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/propertyImageHeight"
+            android:background="@drawable/simple_rectangle"
+            android:layout_weight="1"
+            >
 
-        <!--&lt;!&ndash;images 4&ndash;&gt;-->
-        <!--<ImageView-->
-            <!--android:id="@+id/fr_image_4_iv"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="90dp"-->
-            <!--android:background="@drawable/simple_rectangle"-->
-            <!--android:text="@string/add_image"-->
-            <!--android:layout_weight="1"-->
-            <!--style="@style/CustomTextStyle10"-->
-            <!--android:textColor="@color/gray"-->
-            <!--android:layout_marginEnd="2dp"-->
-            <!--android:layout_marginStart="2dp"-->
-            <!--tools:ignore="ContentDescription" />-->
-        <!--&lt;!&ndash;images 4&ndash;&gt;-->
-        <!--<ImageView-->
-            <!--android:id="@+id/fr_image_5_iv"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="90dp"-->
-            <!--android:background="@drawable/simple_rectangle"-->
-            <!--android:text="@string/add_image"-->
-            <!--android:layout_weight="1"-->
-            <!--style="@style/CustomTextStyle10"-->
-            <!--android:textColor="@color/gray"-->
-            <!--android:layout_marginStart="3dp"-->
-            <!--tools:ignore="ContentDescription" />-->
+            <!--images 1-->
+            <ImageView
+                android:id="@+id/fr_image_6_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/simple_rectangle"
+                style="@style/CustomTextStyle12"
+                android:textColor="@color/gray"
+                tools:ignore="ContentDescription" />
 
-    <!--</LinearLayout>-->
+            <ImageView
+                android:id="@+id/fr_success_6"
+                android:visibility="gone"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_success"
+                android:layout_centerInParent="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/fr_cancel_image_6"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/ic_cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fr_spin_kit6"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/white" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/propertyImageHeight"
+            android:background="@drawable/simple_rectangle"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            >
+
+            <!--images 1-->
+            <ImageView
+                android:id="@+id/fr_image_7_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/simple_rectangle"
+                style="@style/CustomTextStyle12"
+                android:textColor="@color/gray"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/fr_success_7"
+                android:visibility="gone"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_success"
+                android:layout_centerInParent="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/fr_cancel_image_7"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/ic_cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fr_spin_kit7"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/white" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/propertyImageHeight"
+            android:background="@drawable/simple_rectangle"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            >
+
+            <!--images 3-->
+            <ImageView
+                android:id="@+id/fr_image_8_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/simple_rectangle"
+                style="@style/CustomTextStyle12"
+                android:textColor="@color/gray"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/fr_success_8"
+                android:visibility="gone"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_success"
+                android:layout_centerInParent="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/fr_cancel_image_8"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/ic_cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fr_spin_kit8"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/white" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/propertyImageHeight"
+            android:background="@drawable/simple_rectangle"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            >
+
+            <!--images 4-->
+            <ImageView
+                android:id="@+id/fr_image_9_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/simple_rectangle"
+                style="@style/CustomTextStyle12"
+                android:textColor="@color/gray"
+                tools:ignore="ContentDescription"
+                />
+
+            <ImageView
+                android:id="@+id/fr_success_9"
+                android:visibility="gone"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:background="@drawable/ic_success"
+                android:layout_centerInParent="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/fr_cancel_image_9"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/ic_cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fr_spin_kit9"
+                android:visibility="gone"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:SpinKit_Color="@color/white" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/propertyImageHeight"
+            android:background="@drawable/simple_rectangle"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            >
+
+            <!--images 5-->
+            <ImageView
+                android:id="@+id/fr_image_10_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/simple_rectangle"
+                style="@style/CustomTextStyle12"
+                android:textColor="@color/gray"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/fr_success_10"
+                android:visibility="gone"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_success"
+                android:layout_centerInParent="true"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/fr_cancel_image_10"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/ic_cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <!--loading view-->
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:visibility="gone"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/fr_spin_kit10"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:SpinKit_Color="@color/white" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/fr_submit_b"
-        android:layout_below="@+id/fr_ll1"
+        android:layout_below="@+id/fr_ll7"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="32dp"
             >
+
+            <!--address-->
+            <TextView
+                android:id="@+id/fr_address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:textAllCaps="true"
+                style="@style/CustomTextStyle12"
+                android:layout_marginStart="@dimen/addPropertyStartAndEnd"
+                android:textColor="@color/gray"
+                android:layout_marginTop="4dp"
+                />
+            <!--address-->
+            <EditText
+                android:id="@+id/fr_address_et"
+                android:layout_below="@+id/fr_address_tv"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/addPropertyStartAndEnd"
+                android:layout_height="wrap_content"
+                android:background="@drawable/under_line_textview_light"
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:hint="@string/this_address_will_be_visible_to_users"
+                style="@style/CustomTextStyle14"
+                android:layout_marginEnd="@dimen/addPropertyStartAndEnd"
+                android:drawableStart="@drawable/ic_state_city"
+                android:drawablePadding="7dp"
+                android:textStyle="bold"
+                android:padding="@dimen/textViewPadding"
+                tools:ignore="LabelFor" />
+
+
+
+            <!--type-->
+            <TextView
+                android:id="@+id/fr_type_tv"
+                android:layout_below="@+id/fr_address_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type"
+                android:textAllCaps="true"
+                style="@style/CustomTextStyle12"
+                android:layout_marginStart="@dimen/addPropertyStartAndEnd"
+                android:textColor="@color/gray"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                />
+
+            <EditText
+                android:id="@+id/fr_type_et"
+                android:layout_below="@+id/fr_type_tv"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/addPropertyStartAndEnd"
+                android:layout_height="wrap_content"
+                android:background="@drawable/under_line_textview_light"
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:hint="@string/hbk_pg_appartment_office_other"
+                style="@style/CustomTextStyle14"
+                android:layout_marginEnd="@dimen/addPropertyStartAndEnd"
+                android:drawableStart="@drawable/ic_state_city"
+                android:drawablePadding="7dp"
+                android:textStyle="bold"
+                android:padding="@dimen/textViewPadding"
+                android:textAllCaps="true"
+                android:maxLength="50"
+                tools:ignore="LabelFor" />
+
+
         <!--address from map-->
 
     <RelativeLayout
         android:id="@+id/fr_rl_1"
+        android:layout_below="@+id/fr_type_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/activity_horizontal_margin"
         android:elevation="@dimen/elevation"
         tools:targetApi="lollipop"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="#EDF0F2">
 
     <ImageView
-        android:id="@+id/ep_verify_licence"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:id="@+id/fr_verify_licence"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:background="@drawable/ic_location"
+        android:layout_centerVertical="true"
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/fr_location_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pick_address_from_map"
-        style="@style/CustomTextStyle16"
-        android:layout_toEndOf="@+id/ep_verify_licence"
+        style="@style/CustomTextStyle12"
+        android:layout_toEndOf="@+id/fr_verify_licence"
         android:layout_marginStart="12dp"
         android:layout_centerVertical="true"
+        android:gravity="center_vertical"
         tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
@@ -469,7 +763,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/under_line_textview_light"
                     android:inputType="number"
-                    android:maxLength="5"
+                    android:maxLength="6"
                     style="@style/CustomTextStyle18"
                     android:layout_marginEnd="@dimen/addPropertyStartAndEnd"
                     android:padding="@dimen/textViewPadding"
@@ -582,7 +876,7 @@
                 />
 
             <ImageButton
-                android:id="@+id/fr_built_info_tv"
+                android:id="@+id/fr_built_info_ib"
                 android:layout_below="@+id/fr_ll3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -832,17 +1126,53 @@
                     app:rrb_textColor="@color/black"/>
             </co.ceryle.radiorealbutton.RadioRealButtonGroup>
 
+            <!--about property-->
+            <TextView
+                android:id="@+id/fr_about_property_tv"
+                android:layout_below="@+id/fr_radio_bachelor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/about_property"
+                android:textAllCaps="true"
+                style="@style/CustomTextStyle12"
+                android:layout_marginStart="@dimen/addPropertyStartAndEnd"
+                android:textColor="@color/gray"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                />
+
+            <EditText
+                android:id="@+id/fr_about_property_et"
+                android:layout_below="@+id/fr_about_property_tv"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/addPropertyStartAndEnd"
+                android:layout_height="70dp"
+                android:background="@drawable/simple_rectangle"
+                android:inputType="textMultiLine"
+                android:singleLine="false"
+                android:hint="@string/write_key_points_in_formatted_fashion"
+                style="@style/CustomTextStyle14"
+                android:layout_marginEnd="@dimen/addPropertyStartAndEnd"
+                android:drawablePadding="7dp"
+                android:gravity="top"
+                android:textStyle="bold"
+                android:padding="@dimen/textViewPadding"
+                tools:ignore="LabelFor" />
+
+
+            <Button
+                android:id="@+id/fr_submit_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:background="@color/appColor"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/fr_about_property_et"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                />
+
 
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/fr_submit_b"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/submit"
-        android:background="@color/appColor"
-        android:layout_alignParentBottom="true"
-        />
 
 </RelativeLayout>

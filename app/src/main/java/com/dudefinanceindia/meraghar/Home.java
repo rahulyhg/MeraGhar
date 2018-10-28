@@ -30,7 +30,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private NavigationView navigationView;
@@ -104,6 +104,8 @@ public class Home extends AppCompatActivity
                         startActivity(new Intent(Home.this, DealerProfile.class));
                         break;
                     case "Add Property":
+                        MySharedPrefs mySharedPrefs = new MySharedPrefs(Home.this);
+                        mySharedPrefs.clearMapLocation();
                         startActivity(new Intent(Home.this, AddPropertyForRent.class));
                         break;
                     case "Logout":
