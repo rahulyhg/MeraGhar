@@ -41,14 +41,10 @@
     <string name="visiting_card">Visiting Card</string>
     <string name="upload_aadhar_card_image">Upload Aadhar Card Image</string>
     <string name="image_must_contain">Image must contain</string>
-    <string name="license_guidelines">- Name, dob, license number, expiry date should be visible.\n
-                                      - Complete house address should be visible.\n
-                                      - Blurry image wil not be accepted.\n
-                                      - License already registered with CarByke will not be accepted.</string>
     <string name="aadhar_guidelines">- Name, dob, license number, expiry date should be visible.\n
                                      - Complete house address should be visible.\n
                                      - Blurry image wil not be accepted.\n
-                                     - Aadhar Number already registered with CarByke will not be accepted.</string>
+                                     - Aadhar Number already registered with Mera Ghar will not be accepted.</string>
     <string name="upload_visiting_card_image">Upload Visiting Card Image</string>
     <string name="enter_ful_name">Enter ful name</string>
     <string name="enter_alternate_number">Enter alternate number</string>
@@ -82,5 +78,7 @@
     <string name="about_property">About Property</string>
     <string name="type">Type</string>
     <string name="hbk_pg_appartment_office_other">HBK / PG / APPARTMENT / OFFICE / OTHER</string>
+    <string name="address_city">Address, City</string>
+    <string name="filter">filter</string>
 
 </resources>

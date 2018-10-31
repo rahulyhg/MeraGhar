@@ -1,12 +1,16 @@
 package com.dudefinanceindia.meraghar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,16 +37,21 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 import co.ceryle.radiorealbutton.RadioRealButton;
 import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 
-public class AddPropertyForRent extends AppCompatActivity implements View.OnClickListener, ChooseLocationFromMap.SelectedLocationListener {
+public class AddPropertyForRent extends AppCompatActivity implements View.OnClickListener {
 
     private MaterialSpinner furnished_s;
-    private EditText price_et, bedrooms_et, bathrooms_et, builtup_area_et, carpet_area_et,
-            total_floors_et, floor_for_rent_et, address_et;
+    private EditText price_et, bedrooms_et, bathrooms_et, builtup_area_et, carpet_area_et, about_property_et,
+            total_floors_et, floor_for_rent_et, address_et, type_et;
     private ImageView image_1_iv, image_2_iv, image_3_iv, image_4_iv, image_5_iv, image_6_iv, image_7_iv, image_8_iv, image_9_iv, image_10_iv;
     private RadioRealButtonGroup bachelor_rb;
     private ImageButton built_info_ib, back_ib, cancel1_ib, cancel2_ib, cancel3_ib, cancel4_ib, cancel5_ib, cancel6_ib, cancel7_ib, cancel8_ib, cancel9_ib, cancel10_ib;
@@ -51,12 +60,11 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
     String furnish = "Not Known";
     private String bachelor_allowed = "yes";
 
-    private LinearLayout linearLayout_next_five_images;
 
     private static final String PROPERTIES = "properties";
     private static final String RENT = "rent";
     private final String ADDRESS = "address";
-    private final String LOCATION = "LOCATION";
+    private final String LOCATION = "location_from_map";
     private final String LATITUDE = "latitude";
     private final String LONGITUDE = "Longitude";
     private final String PRICE = "price";
@@ -68,6 +76,9 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
     private final String TOTAL_FLOORS = "total_floors";
     private final String FLOOR_FOR_RENT = "floor_for_rent";
     private final String BACHELOR_ALLOWED = "bachelor_allowed";
+    private final String ABOUT_PROPERTY = "about_property";
+    private final String DATE_TIME = "date_time";
+    private final String TYPE = "type";
     private DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child(PROPERTIES).child(RENT);
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -80,6 +91,8 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
 
     int image_tag, image_picker_decider, cancel_tag;
     Uri ImageFilePath1, ImageFilePath2, ImageFilePath3, ImageFilePath4, ImageFilePath5, ImageFilePath6, ImageFilePath7, ImageFilePath8, ImageFilePath9, ImageFilePath10;
+
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +155,8 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
         back_ib = findViewById(R.id.fr_back_ib);
         address_et = findViewById(R.id.fr_address_et);
         built_info_ib = findViewById(R.id.fr_built_info_ib);
+        about_property_et = findViewById(R.id.fr_about_property_et);
+        type_et = findViewById(R.id.fr_type_et);
 
         relativeLayout_location = findViewById(R.id.fr_rl_1);
 
@@ -185,7 +200,8 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
 
     }
 
-     protected void onStart(){
+
+    protected void onStart(){
         super.onStart();
         MySharedPrefs mySharedPrefs = new MySharedPrefs(AddPropertyForRent.this);
         String location = mySharedPrefs.getLocationFromMap();
@@ -196,12 +212,12 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
     }
 
 //    getting result from map fragment
-    public void onLocationSelected(String location, String latitude, String longitude) {
-        if (!TextUtils.isEmpty(location)){
-            location_tv.setText(location);
-            location_tv.setTextColor(getResources().getColor(R.color.appColor));
-        }
-    }
+//    public void onLocationSelected(String location, String latitude, String longitude) {
+//        if (!TextUtils.isEmpty(location)){
+//            location_tv.setText(location);
+//            location_tv.setTextColor(getResources().getColor(R.color.appColor));
+//        }
+//    }
 
 
 //    bachelor button
@@ -225,7 +241,7 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
     private void selectImageToUpload() {
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON_TOUCH)
-                .setOutputCompressQuality(40)
+                .setOutputCompressQuality(30)
                 .setInitialCropWindowPaddingRatio(0)
                 .start(AddPropertyForRent.this);
     }
@@ -397,8 +413,9 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
     }
 
     private void setData(){
-        String price, bedrooms, bathrooms, builtup_area, carpet_area, total_floors, floor_for_rent, location, latitude, longitude, address;
+        String price, type, bedrooms, bathrooms, builtup_area, carpet_area, total_floors, floor_for_rent, location, latitude, longitude, address, about_property;
         MySharedPrefs mySharedPrefs = new MySharedPrefs(AddPropertyForRent.this);
+
         location = mySharedPrefs.getLocationFromMap();
         latitude = mySharedPrefs.getLatitude();
         longitude = mySharedPrefs.getLongitude();
@@ -410,8 +427,10 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
         carpet_area = carpet_area_et.getText().toString().trim();
         total_floors = total_floors_et.getText().toString().trim();
         floor_for_rent = floor_for_rent_et.getText().toString().trim();
+        about_property = about_property_et.getText().toString().trim();
+        type = type_et.getText().toString().trim();
 
-        if (!checkConditions(address, price, bedrooms, bathrooms, location, latitude, longitude)){
+        if (!checkConditions(address, type, price, bedrooms, bathrooms, location, latitude, longitude)){
             dismiss();
             return;
         }
@@ -467,6 +486,9 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
         cancel9_ib.setVisibility(View.GONE);
         cancel10_ib.setVisibility(View.GONE);
 
+        @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm a");
+        final String date = df.format(Calendar.getInstance().getTime());
+
         databaseReference = databaseReference1.child(Objects.requireNonNull(key));
 
         databaseReference.child(ADDRESS).setValue(address);
@@ -482,27 +504,39 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
         databaseReference.child(LOCATION).setValue(location);
         databaseReference.child(LATITUDE).setValue(latitude);
         databaseReference.child(LONGITUDE).setValue(longitude);
+        databaseReference.child(ABOUT_PROPERTY).setValue(about_property);
+        databaseReference.child(DATE_TIME).setValue(date);
+        databaseReference.child(TYPE).setValue(type);
 
         MySharedPrefs sharedPrefs = new MySharedPrefs(AddPropertyForRent.this);
         final String dealer_uid = sharedPrefs.getUID();
         DatabaseReference databaseReference_uid = FirebaseDatabase.getInstance().getReference();
-        databaseReference_uid.child("dealer_profiles").child(dealer_uid).child("properties_fo_rent").child(key).setValue(key);
+        databaseReference_uid.child("properties_per_dealer").child(dealer_uid).child(key).setValue(key);
         databaseReference.child("posted_by").setValue(dealer_uid);
 
         dismiss();
 
         ShowMessage showMessage = new ShowMessage(AddPropertyForRent.this);
-        showMessage.successMessage("Property For Rent Added.", "Please wait while images are being uploaded.");
+        if (uri_count != 0){
+            showMessage.successMessage("Property For Rent Added.", "Please wait while images are being uploaded.");
+        }
+        else {
+            showMessage.successMessage("Success", "Property For Rent Added.");
+        }
 
         UploadImageFileToFirebaseStorage(key, dealer_uid);
 
     }
 
 //    check conditions
-    private Boolean checkConditions(String address, String  price, String bedrooms, String bathrooms, String location, String latitude, String longitude) {
+    private Boolean checkConditions(String address, String type, String  price, String bedrooms, String bathrooms, String location, String latitude, String longitude) {
 
         if (TextUtils.isEmpty(address)){
             Toast.makeText(this, "Enter address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(type)){
+            Toast.makeText(this, "Enter Property type", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -519,11 +553,11 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
             return false;
         }
         if (TextUtils.isEmpty(location)){
-            Toast.makeText(this, "Select Location Name from Map", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Select Location from Map", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (TextUtils.isEmpty(latitude) || TextUtils.isEmpty(longitude)){
-            Toast.makeText(this, "Unable to get longitude and latitude. Select Map Location Again!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Unable to get Location. Select Map Location Again!", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -811,7 +845,7 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
                 image_picker_decider = 9;
                 break;
             case R.id.fr_rl_1:
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container_add_property_rent, new ChooseLocationFromMap(), "location_map").addToBackStack("location_map").commit();
+                startActivity(new Intent(AddPropertyForRent.this, ChooseLocationFromMap.class));
                 break;
             case R.id.fr_back_ib:
                 go_back();
@@ -844,7 +878,7 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
                 .positiveText("Yes")
                 .positiveColor(getResources().getColor(R.color.red))
                 .negativeText("No")
-                .icon(getResources().getDrawable(R.drawable.ic_warning))
+                .icon(getResources().getDrawable(R.drawable.ic_error_black))
                 .backgroundColor(getResources().getColor(R.color.white))
                 .negativeColor(getResources().getColor(R.color.lightGreen))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -1474,6 +1508,24 @@ public class AddPropertyForRent extends AppCompatActivity implements View.OnClic
 
     }//upload image
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+    }
 
 
 //    end

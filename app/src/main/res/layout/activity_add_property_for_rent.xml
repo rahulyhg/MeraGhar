@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_container_add_property_rent"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +8,39 @@
     android:background="@color/white"
     tools:context=".AddPropertyForRent">
 
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/cc_main.appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="#f2f2f2"
+        android:fitsSystemWindows="true"
+        >
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/cc_main.collapsing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlways"
+        android:fitsSystemWindows="true"
+        app:contentScrim="@color/white"
+        app:expandedTitleMarginStart="48dp"
+        app:expandedTitleMarginEnd="64dp"
+        android:background="#f2f2f2"
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2f2f2"
+        >
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/fr_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:background="@color/appColor"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
@@ -21,9 +50,10 @@
             <!--back button-->
             <ImageButton
                 android:id="@+id/fr_back_ib"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:background="@drawable/ic_return_back_white_smoke"
+                android:layout_centerVertical="true"
                 tools:ignore="ContentDescription" />
 
             <!--edit profile-->
@@ -32,10 +62,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_property"
-                style="@style/CustomTextStyle14"
+                style="@style/CustomTextStyle16"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:paddingStart="@dimen/activity_horizontal_margin"
+                android:layout_centerVertical="true"
                 tools:ignore="RelativeOverlap,RtlSymmetry" />
 
             <!--loading view-->
@@ -614,13 +645,17 @@
 
         </RelativeLayout>
     </LinearLayout>
+    </RelativeLayout>
 
+    </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fr_ll7"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
         <RelativeLayout
@@ -638,7 +673,7 @@
                 style="@style/CustomTextStyle12"
                 android:layout_marginStart="@dimen/addPropertyStartAndEnd"
                 android:textColor="@color/gray"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 />
             <!--address-->
             <EditText
@@ -650,7 +685,7 @@
                 android:background="@drawable/under_line_textview_light"
                 android:inputType="textCapWords"
                 android:singleLine="true"
-                android:hint="@string/this_address_will_be_visible_to_users"
+                android:hint="@string/address_city"
                 style="@style/CustomTextStyle14"
                 android:layout_marginEnd="@dimen/addPropertyStartAndEnd"
                 android:drawableStart="@drawable/ic_state_city"
@@ -682,7 +717,7 @@
                 android:layout_marginStart="@dimen/addPropertyStartAndEnd"
                 android:layout_height="wrap_content"
                 android:background="@drawable/under_line_textview_light"
-                android:inputType="textCapWords"
+                android:inputType="text"
                 android:singleLine="true"
                 android:hint="@string/hbk_pg_appartment_office_other"
                 style="@style/CustomTextStyle14"
@@ -692,8 +727,8 @@
                 android:textStyle="bold"
                 android:padding="@dimen/textViewPadding"
                 android:textAllCaps="true"
-                android:maxLength="50"
-                tools:ignore="LabelFor" />
+                android:maxLength="20"
+                 />
 
 
         <!--address from map-->
@@ -754,6 +789,7 @@
                     android:text="@string/amount_payable_per_month"
                     style="@style/CustomTextStyle14"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:layout_weight="1.3"
                     />
 
@@ -1145,9 +1181,9 @@
                 android:layout_below="@+id/fr_about_property_tv"
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/addPropertyStartAndEnd"
-                android:layout_height="70dp"
+                android:layout_height="100dp"
                 android:background="@drawable/simple_rectangle"
-                android:inputType="textMultiLine"
+                android:inputType="textMultiLine|textCapSentences"
                 android:singleLine="false"
                 android:hint="@string/write_key_points_in_formatted_fashion"
                 style="@style/CustomTextStyle14"
@@ -1175,4 +1211,4 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

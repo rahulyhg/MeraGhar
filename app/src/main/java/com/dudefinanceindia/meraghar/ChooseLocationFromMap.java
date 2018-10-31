@@ -1,6 +1,7 @@
 package com.dudefinanceindia.meraghar;
 
-
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +16,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -46,11 +45,7 @@ import java.util.Objects;
 
 import im.delight.android.location.SimpleLocation;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ChooseLocationFromMap extends Fragment {
+public class ChooseLocationFromMap extends AppCompatActivity {
 
     private static final int RESULT_OK = -1;
     private GoogleMap googleMap;
@@ -61,52 +56,27 @@ public class ChooseLocationFromMap extends Fragment {
     private ImageButton current_location_ib, sat_ib, ter_ib;
     private String longitude, latitude;
     private ImageButton back_ib;
-    SelectedLocationListener mCallback;
-
-    public ChooseLocationFromMap() {
-        // Required empty public constructor
-    }
-
-    // Container Activity must implement this interface
-    public interface SelectedLocationListener {
-         void onLocationSelected(String location, String latitude, String longitude);
-    }
+   // SelectedLocationListener mCallback;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (SelectedLocationListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement SelectedLocationListener");
-        }
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_choose_location_from_map);
 
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_choose_location_from_map, container, false);
-
-        search_tv = view.findViewById(R.id.dl_search_et);
-        continue_b = view.findViewById(R.id.dl_continue_b);
-        current_location_ib = view.findViewById(R.id.dl_current_location_ib);
-        sat_ib = view.findViewById(R.id.dl_satellite_ib);
-        ter_ib = view.findViewById(R.id.dl_terrain_ib);
-        mMapView = view.findViewById(R.id.dl_mapview);
-        back_ib = view.findViewById(R.id.dl_back_ib);
+        search_tv = findViewById(R.id.dl_search_et);
+        continue_b = findViewById(R.id.dl_continue_b);
+        current_location_ib = findViewById(R.id.dl_current_location_ib);
+        sat_ib = findViewById(R.id.dl_satellite_ib);
+        ter_ib = findViewById(R.id.dl_terrain_ib);
+        mMapView = findViewById(R.id.dl_mapview);
+        back_ib = findViewById(R.id.dl_back_ib);
 
 //        initiating google map
         initiateMap(savedInstanceState);
         //    register button click responses
         clickResponse();
 
-        return view;
     }
 
 
@@ -116,9 +86,7 @@ public class ChooseLocationFromMap extends Fragment {
         back_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("location_map");
-                if(fragment != null)
-                    getActivity().getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                ChooseLocationFromMap.this.finish();
             }
         });
 
@@ -138,10 +106,10 @@ public class ChooseLocationFromMap extends Fragment {
 
                 try {
                     Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
-                            .build(Objects.requireNonNull(getActivity()));
+                            .build(Objects.requireNonNull(ChooseLocationFromMap.this));
                     startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
                 } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                    Toast.makeText(getActivity(), "e "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChooseLocationFromMap.this, "e "+e.getMessage(), Toast.LENGTH_SHORT).show();
                     // TODO: Handle the error.
                 }
             }
@@ -186,7 +154,7 @@ public class ChooseLocationFromMap extends Fragment {
             @Override
             public void onClick(View view) {
                 final String address = search_tv.getText().toString().trim();
-                new MaterialDialog.Builder(Objects.requireNonNull(getActivity()))
+                new MaterialDialog.Builder(Objects.requireNonNull(ChooseLocationFromMap.this))
                         .title("Selected Address")
                         .content(""+address)
                         .contentColorRes(R.color.black)
@@ -204,16 +172,16 @@ public class ChooseLocationFromMap extends Fragment {
                                 final String location = search_tv.getText().toString().trim();
 
                                 if (TextUtils.isEmpty(location)){
-                                    Toast.makeText(getActivity(), "Select Location", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChooseLocationFromMap.this, "Select Location", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 if (TextUtils.isEmpty(latitude) || TextUtils.isEmpty(latitude)){
-                                    Toast.makeText(getActivity(), "Unable to get longitude and latitude. Select Map Location Again!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ChooseLocationFromMap.this, "Unable to get longitude and latitude. Select Map Location Again!", Toast.LENGTH_LONG).show();
                                     return;
                                 }
 
-                                mCallback.onLocationSelected(location, latitude, longitude);
-                                MySharedPrefs mySharedPrefs =  new MySharedPrefs(getActivity());
+                                //mCallback.onLocationSelected(location, latitude, longitude);
+                                MySharedPrefs mySharedPrefs =  new MySharedPrefs(ChooseLocationFromMap.this);
                                 mySharedPrefs.setSelectedLocationFromMap(address, latitude, longitude);
                                 back_ib.performClick();
                             }
@@ -230,7 +198,7 @@ public class ChooseLocationFromMap extends Fragment {
     private void initiateMap(Bundle savedInstanceState){
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume(); // needed to get the map to display immediately
-        MapsInitializer.initialize(Objects.requireNonNull(getActivity()).getApplicationContext());
+        MapsInitializer.initialize(Objects.requireNonNull(ChooseLocationFromMap.this).getApplicationContext());
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
@@ -262,10 +230,10 @@ public class ChooseLocationFromMap extends Fragment {
 
     //    set selected location on map and edit text
     private void setSelectedLocation(LatLng point) {
-        // Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(getResources().getResourceName(R.drawable.tracker), "drawable", getActivity().getPackageName()));
+        // Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(), getResources().getIdentifier(getResources().getResourceName(R.drawable.tracker), "drawable", ChooseLocationFromMap.this.getPackageName()));
         //  Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, 38, 38, false);
         try {
-            Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+            Geocoder geocoder = new Geocoder(ChooseLocationFromMap.this, Locale.getDefault());
             String gps_address="";
             List<Address> addresses = null;
             addresses = geocoder.getFromLocation(point.latitude,point.longitude, 1);
@@ -285,7 +253,7 @@ public class ChooseLocationFromMap extends Fragment {
             //.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap)));
 
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
-            Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChooseLocationFromMap.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 
@@ -296,8 +264,8 @@ public class ChooseLocationFromMap extends Fragment {
 
     //    permission to get user location, if permitted then get user location from gps
     private void GetUserLocationPermissionThenSetLocation() {
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getActivity()), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(ChooseLocationFromMap.this), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(ChooseLocationFromMap.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(ChooseLocationFromMap.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
         else{
 
@@ -306,7 +274,7 @@ public class ChooseLocationFromMap extends Fragment {
                 latitude = String.valueOf(getLatitude());
                 longitude = String.valueOf(getLongitude());
 
-                Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                Geocoder geocoder = new Geocoder(ChooseLocationFromMap.this, Locale.getDefault());
                 String gps_address="";
                 Double lat = Double.valueOf(latitude);
                 Double log = Double.valueOf(longitude);
@@ -320,7 +288,7 @@ public class ChooseLocationFromMap extends Fragment {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, log), 18.0f));
             } catch (IOException | IndexOutOfBoundsException | NullPointerException e) {
                 e.printStackTrace();
-                // Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(ChooseLocationFromMap.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -330,7 +298,7 @@ public class ChooseLocationFromMap extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Place place = PlaceAutocomplete.getPlace(Objects.requireNonNull(getActivity()), data);
+                Place place = PlaceAutocomplete.getPlace(Objects.requireNonNull(ChooseLocationFromMap.this), data);
                 search_tv.setText(place.getAddress());
                 googleMap.clear();
 
@@ -343,8 +311,8 @@ public class ChooseLocationFromMap extends Fragment {
 
                 //   Log.i(TAG, "Place: " + place.getName());
             } else if (resultCode == PlaceAutocomplete.RESULT_ERROR) {
-                Status status = PlaceAutocomplete.getStatus(Objects.requireNonNull(getActivity()), data);
-                Toast.makeText(getActivity(), ""+status.getStatusMessage(), Toast.LENGTH_SHORT).show();
+                Status status = PlaceAutocomplete.getStatus(Objects.requireNonNull(ChooseLocationFromMap.this), data);
+                Toast.makeText(ChooseLocationFromMap.this, ""+status.getStatusMessage(), Toast.LENGTH_SHORT).show();
                 // TODO: Handle the error.
                 //  Log.i(TAG, status.getStatusMessage());
 
@@ -357,11 +325,11 @@ public class ChooseLocationFromMap extends Fragment {
     public double getLatitude(){
 
         // construct a new instance of SimpleLocation
-        SimpleLocation location = new SimpleLocation(Objects.requireNonNull(getActivity()));
+        SimpleLocation location = new SimpleLocation(Objects.requireNonNull(ChooseLocationFromMap.this));
         // if we can't access the location yet
         if (!location.hasLocationEnabled()) {
             // ask the user to enable location access
-            SimpleLocation.openSettings(getActivity());
+            SimpleLocation.openSettings(ChooseLocationFromMap.this);
         }
         return location.getLatitude();
 
@@ -369,11 +337,11 @@ public class ChooseLocationFromMap extends Fragment {
     }
     public double getLongitude(){
         // construct a new instance of SimpleLocation
-        SimpleLocation  location = new SimpleLocation(Objects.requireNonNull(getActivity()));
+        SimpleLocation  location = new SimpleLocation(Objects.requireNonNull(ChooseLocationFromMap.this));
         // if we can't access the location yet
         if (!location.hasLocationEnabled()) {
             // ask the user to enable location access
-            SimpleLocation.openSettings(getActivity());
+            SimpleLocation.openSettings(ChooseLocationFromMap.this);
         }
         return location.getLongitude();
     }

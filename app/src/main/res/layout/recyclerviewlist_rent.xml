@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lcd_relativeLayout"
+    android:background="@color/white"
+    app:cardCornerRadius="3dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+
+
+
+        <com.bosphere.fadingedgelayout.FadingEdgeLayout
+            android:id="@+id/fading_edge_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fel_edge="bottom"
+            app:fel_size_bottom="60dp"
+           >
+            <!--image 1-->
+            <ImageView
+                android:id="@+id/vr_property_image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+        </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+
+        <!--price and location-->
+        <RelativeLayout
+            android:id="@+id/vr_price_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fading_edge_layout"
+            >
+            <!--price-->
+            <TextView
+                android:id="@+id/vr_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:padding="@dimen/textViewPadding"
+                style="@style/CustomTextStyle18"
+                android:textColor="@color/appColor"
+                android:textStyle="bold"
+                android:drawablePadding="@dimen/textViewPadding"
+                />
+
+        </RelativeLayout>
+
+        <!--type-->
+        <TextView
+            android:id="@+id/vr_type_tv"
+            android:layout_below="@+id/vr_price_rl"
+            android:layout_width="match_parent"
+            android:layout_toStartOf="@+id/vr_carpet_area"
+            android:layout_marginEnd="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            style="@style/CustomTextStyle14"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            />
+
+        <!--address-->
+        <TextView
+            android:id="@+id/vr_address_tv"
+            android:layout_below="@+id/vr_type_tv"
+            android:layout_width="match_parent"
+            android:layout_toStartOf="@+id/vr_carpet_area"
+            android:layout_marginEnd="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="12dp"
+            style="@style/CustomTextStyle14"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:layout_marginBottom="12dp"
+            />
+
+        <!--carpet area-->
+        <TextView
+            android:id="@+id/vr_carpet_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/carpet_area"
+            android:layout_below="@+id/vr_price_rl"
+            style="@style/CustomTextStyle12"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/ic_area"
+            android:drawablePadding="@dimen/textViewPadding"
+            android:layout_marginEnd="12dp"
+            android:gravity="center_vertical"
+            />
+        <TextView
+            android:id="@+id/vr_carpet_area_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vr_carpet_area"
+            style="@style/CustomTextStyle12"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="1dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="12dp"
+            android:textColor="@color/gray"
+            android:layout_marginBottom="12dp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+</android.support.v7.widget.CardView>
+

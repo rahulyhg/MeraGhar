@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,18 +18,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -35,6 +46,18 @@ public class Home extends AppCompatActivity
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     private NavigationView navigationView;
     private ImageView background_iv;
+
+    private RecyclerView recyclerView;
+    private ImageButton back_ib;
+
+    // Creating RecyclerView.Adapter.
+    private RecyclerView.Adapter adapter ;
+    private List<DataForRecyclerView> list = new ArrayList<>();
+
+    private static final String PICK_UP_BASE = "pick_up_base";
+    public Button add_new_b;
+
+    SpinKitView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,29 +67,62 @@ public class Home extends AppCompatActivity
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-
-
         navigationView =  findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
 
 
-     //   background_iv = navigationView.getHeaderView(0).findViewById(R.id.nh_background_iv);
-//        Picasso.with(Home.this)
-//                .load(R.drawable.navigation_background)
-//                .centerCrop()
-//                .fit()
-//                .into(background_iv);
+        TextView search_et = findViewById(R.id.ch_search_tv);
+        //sv = findViewById(R.id.ep_spin);
+
+
+        recyclerView = findViewById(R.id.ch_recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.isDuplicateParentStateEnabled();
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(Home.this);
+        // Setting RecyclerView layout as LinearLayout.
+        recyclerView.setLayoutManager(mLayoutManager);
+
 
     }
+
+//    getting properties for rent
+    private void getPropertiesForRent() {
+        databaseReference.child("properties").child("rent").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(list!=null) {
+                    list.clear();  // v v v v important (eliminate duplication of data)
+                }
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    DataForRecyclerView data = postSnapshot.getValue(DataForRecyclerView.class);
+                    Objects.requireNonNull(data).setKey(postSnapshot.getKey());
+                    list.add(data);
+
+                }
+
+                adapter = new RentRecyclerViewAdapter(Home.this, list);
+                recyclerView.setAdapter(adapter);
+
+                if (list.isEmpty()){
+                    Toast.makeText(Home.this, "Nothing to show", Toast.LENGTH_SHORT).show();
+                }
+                //dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    //    getting properties for rent
 
     public void onStart(){
         super.onStart();
        // checkIfDealerLoggedIn();
+
+        getPropertiesForRent();
 
         MySharedPrefs mySharedPrefs = new MySharedPrefs(Home.this);
         String logged_in_or_not = mySharedPrefs.getLoggedInOrNot();
@@ -170,26 +226,6 @@ public class Home extends AppCompatActivity
 
     }
 
-
-//    private void checkIfDealerLoggedIn() {
-//        //            hide login item
-//        Menu menu = navigationView.getMenu();
-//        MenuItem dealer_login_item, dealer_profile_item;
-//        dealer_login_item = menu.findItem(R.id.nav_dealer_login);
-//        dealer_profile_item = menu.findItem(R.id.nav_profile);
-//
-//        MySharedPrefs mySharedPrefs = new MySharedPrefs(Home.this);
-//        String logged_in_or_not = mySharedPrefs.getLoggedInOrNot();
-//
-//        if (TextUtils.equals(logged_in_or_not, "true")){
-//            dealer_profile_item.setVisible(true);
-//            dealer_login_item.setVisible(false);
-//        }
-//        else {
-//            dealer_profile_item.setVisible(false);
-//            dealer_login_item.setVisible(true);
-//        }
-//    }
 
     @Override
     public void onBackPressed() {
